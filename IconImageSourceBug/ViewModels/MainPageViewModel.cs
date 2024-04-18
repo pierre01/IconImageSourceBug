@@ -24,6 +24,7 @@ public partial class MainPageViewModel : ObservableObject
         var todo = param as TodoItem;
         if (todo != null)
         {
+            // Needed to refresh the item and show that the original color was modified
             todo.IsDone = !todo.IsDone;
         }
     }

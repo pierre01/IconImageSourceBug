@@ -13,6 +13,7 @@
                 <SwipeView>
                     <SwipeView.RightItems>
                         <SwipeItems>
+                            <!--This modifies the original color of the image -->
                             <SwipeItem BackgroundColor="Red" IconImageSource="check.png"                                
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=DoSomethingCommand}"
                                 CommandParameter="{Binding .}" />
@@ -20,6 +21,7 @@
                     </SwipeView.RightItems>
                     <SwipeView.LeftItems>
                         <SwipeItems>
+                            <!--This modifies the original color of the image-->
                             <SwipeItem BackgroundColor="Red" IconImageSource="circle_outline.png" 
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=DoSomethingCommand}"
                                 CommandParameter="{Binding .}" />
@@ -28,12 +30,14 @@
                     <Grid
                         ColumnDefinitions="30,*" HeightRequest="44"
                         HorizontalOptions="FillAndExpand">
+                         <!--This shows original color of the image-->
                         <ImageButton
                             Margin="4"
                             IsVisible="{Binding IsNotDone}"
                             Source="circle_outline.png"
                             ToolTipProperties.Text="Complete"
                             WidthRequest="22" />
+                         <!--This shows original color of the image-->
                         <ImageButton
                             Margin="4"
                             HeightRequest="22"
