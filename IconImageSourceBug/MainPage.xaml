@@ -1,8 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IconImageSourceBug.MainPage">
+<ContentPage
+    x:Class="IconImageSourceBug.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:IconImageSourceBug"
+    xmlns:vm="clr-namespace:IconImageSourceBug.ViewModels"
+    x:DataType="vm:MainPageViewModel">
 
-<Grid></Grid>
+    <ContentPage.Resources>
+        <DataTemplate x:Key="TodoTemplate">
+            <Grid x:DataType="local:TodoItem" HorizontalOptions="FillAndExpand">
+                <SwipeView>
+                    <SwipeView.RightItems>
+                        <SwipeItems>
+                            <SwipeItem BackgroundColor="Red" IconImageSource="check.png"                                
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=DoSomethingCommand}"
+                                CommandParameter="{Binding .}" />
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <SwipeView.LeftItems>
+                        <SwipeItems>
+                            <SwipeItem BackgroundColor="Red" IconImageSource="circle_outline.png" 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=DoSomethingCommand}"
+                                CommandParameter="{Binding .}" />
+                        </SwipeItems>
+                    </SwipeView.LeftItems>
+                    <Grid
+                        ColumnDefinitions="30,*" HeightRequest="44"
+                        HorizontalOptions="FillAndExpand">
+                        <ImageButton
+                            Margin="4"
+                            IsVisible="{Binding IsNotDone}"
+                            Source="circle_outline.png"
+                            ToolTipProperties.Text="Complete"
+                            WidthRequest="22" />
+                        <ImageButton
+                            Margin="4"
+                            HeightRequest="22"
+                            IsVisible="{Binding IsDone}"
+                            Source="check.png"
+                            ToolTipProperties.Text="Move to Active"
+                            WidthRequest="22" />
+                        <Grid Grid.Column="1">
+                            <Label FontSize="14" Text="{Binding Title}" VerticalOptions="Center" />
+                        </Grid>
+                    </Grid>
 
+                </SwipeView>
+            </Grid>
+        </DataTemplate>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label FontSize="Large" Text="Todo List" />
+        <CollectionView
+            Grid.Row="1"
+            ItemTemplate="{StaticResource TodoTemplate}"
+            ItemsSource="{Binding ActiveTodos}"
+            SelectionMode="None">
+            <CollectionView.EmptyView>
+                <Label Text="No todos yet" />
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </Grid>
 </ContentPage>

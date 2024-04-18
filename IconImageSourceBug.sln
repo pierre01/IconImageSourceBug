@@ -4,6 +4,12 @@ VisualStudioVersion = 17.10.34814.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IconImageSourceBug", "IconImageSourceBug\IconImageSourceBug.csproj", "{8C13E9B0-B0B9-4050-8800-244EDE3B45F2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{B6EC9370-FDB5-4745-9A57-5E1F7D7937F8}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		sample.gif = sample.gif
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

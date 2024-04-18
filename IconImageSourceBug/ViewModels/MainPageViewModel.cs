@@ -1,20 +1,30 @@
-﻿using System.Collections.ObjectModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 
 namespace IconImageSourceBug.ViewModels;
 
-public class MainPageViewModel
+public partial class MainPageViewModel : ObservableObject
 {
     public ObservableCollection<TodoItem> ActiveTodos { get; set; }
-    public ObservableCollection<TodoItem> CompletedTodos { get; set; }
 
     public MainPageViewModel()
     {
         ActiveTodos = [
-            new TodoItem { Name = "Buy milk" },
-            new TodoItem { Name = "Buy bread" }
+            new TodoItem { Title = "Buy milk" },
+            new TodoItem { Title = "Buy bread" },
+
+            new TodoItem { Title = "Buy eggs", IsDone = true }
         ];
-        CompletedTodos = [
-            new TodoItem { Name = "Buy eggs", IsDone = true }
-        ];
+    }
+
+    [RelayCommand]
+    private void DoSomething(object param)
+    {
+        var todo = param as TodoItem;
+        if (todo != null)
+        {
+            todo.IsDone = !todo.IsDone;
+        }
     }
 }
